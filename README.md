@@ -18,6 +18,17 @@ Features mapped to Instance and are tasks in static core instance
 user = new xT('user', [features = { filter: newReplaceFilterCallback }])   // replace default filter
 ```
 
+Example wildcard filter
+```
+user = new $("user", { filter: (filterQueue, topic) => {
+    console.log("$user:filter", "WILDCARD", topic, filterQueue, this)
+    if(topic[topic.length -1] == '*') {
+        return filterQueue.filter(task => task.topic.startsWith(topic.slice(0, -1)))
+    }
+    return filterQueue.filter(task => task.topic == topic)
+}})
+```
+
 User / sub instances are hookable!
 ```
 xT.on('$user:emit', (...args) => console.log("DEBUG instance 'user' -> 'emit'", args))
