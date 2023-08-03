@@ -20,7 +20,7 @@ user = new xT('user', [features = { filter: newReplaceFilterCallback }])   // re
 
 Example wildcard filter
 ```
-user = new $("user", { filter: (filterQueue, topic) => {
+user = new xT("user", { filter: (filterQueue, topic) => {
     console.log("$user:filter", "WILDCARD", topic, filterQueue, this)
     if(topic[topic.length -1] == '*') {
         return filterQueue.filter(task => task.topic.startsWith(topic.slice(0, -1)))
